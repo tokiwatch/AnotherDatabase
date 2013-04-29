@@ -1,0 +1,14 @@
+id: anotherdatabase
+key: MT::Plugin::AnotherDatabase
+name: AnotherDatabase
+version: 1.0
+description: <MT_TRANS phrase='description of AnotherDatabase'>
+author_name: Takuji Tokiwa
+author_link: http://www.allianceport.jp/
+l10n_class: AnotherDatabase::L10N
+tags:
+    function:
+        AnotherDatabaseColumn: $AnotherDatabase::AnotherDatabase::ContextHandlers::column_object
+    block:
+        AnotherDatabase: $AnotherDatabase::AnotherDatabase::ContextHandlers::db_object
+        AnotherDatabaseTable: $AnotherDatabase::AnotherDatabase::ContextHandlers::table_object

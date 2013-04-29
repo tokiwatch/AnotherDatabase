@@ -23,12 +23,13 @@ Typeインストールディレクトリの「**plugins**」ディレクトリ�
 
 ### 初期設定
 mt-config.cgiに下記の項目を追記します。
+
 ```
 ADBObjectDriver dbi:mysql
-ADBDatabase     *database name*
-ADBDBUser       *database username*
-ADBDBPassword   *database password *
-ADBDBHost       *hostname (ex: localhost)*
+ADBDatabase     database name
+ADBDBUser       database username
+ADBDBPassword   database password
+ADBDBHost       hostname
 ADBDBEncode     utf8
 # latin1のテーブルにUTF8で保存されてしまっているような場合、ADBDEncodeをbinaryとしてください。
 ```

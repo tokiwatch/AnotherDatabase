@@ -31,6 +31,7 @@ ADBDBUser       database username
 ADBDBPassword   database password
 ADBDBHost       hostname
 ADBDBEncode     utf8
+
 # latin1のテーブルにUTF8で保存されてしまっているような場合、ADBDEncodeをbinaryとしてください。
 ```
 

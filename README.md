@@ -1,4 +1,4 @@
-# EntryPreferenceStandardizerプラグイン
+# AnotherDatabaseプラグイン
 
 ## はじめに
 

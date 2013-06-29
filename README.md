@@ -42,17 +42,17 @@ ADBDBEncode     utf8
 
 ##### モディファイヤ
 
-- objectdriver_key (default: ADBObjectDriver)
+- objectdriver_key (default: adbobjectdriver)
     - mt-config.cgiに記述した変数名を指定します。
-- database_key (default: ADBObjectDriver)
+- database_key (default: adbdatabase)
     - mt-config.cgiに記述した変数名を指定します。
-- dbhost_key (default: ADBObjectDriver)
+- dbhost_key (default: adbdbuser)
     - mt-config.cgiに記述した変数名を指定します。
-- dbuser_key (default: ADBObjectDriver)
+- dbuser_key (default: adbdbpassword)
     - mt-config.cgiに記述した変数名を指定します。
-- dbpassword_key (default: ADBObjectDriver)
+- dbpassword_key (default: adbdbhost)
     - mt-config.cgiに記述した変数名を指定します。
-- dbencode (default: ADBObjectDriver)
+- dbencode (default: adbdbencode)
     - mt-config.cgiに記述した変数名を指定します。
 
 #### AnotherDatabaseTable (ブロックタグ)

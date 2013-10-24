@@ -4,9 +4,10 @@ package AnotherDatabase::ContextHandlers;
 
 use strict;
 use warnings;
+use Encode;
 
 #----- Tags
-sub db_object { #{{{
+sub db_object {
     my ($ctx, $args, $cond) = @_;
     my $builder = $ctx->stash('builder');
     my $tokens  = $ctx->stash('tokens');
@@ -100,24 +101,13 @@ sub table_object { #{{{
     return $out;
 }
 
-#}}}
 
-sub column_object { #{{{
+sub column_object {
     my ($ctx, $args) = @_;
-
     my $column_name = $args->{'column'};
     my $row = $ctx->stash('another_database_table');
     my $column = $row->{$column_name};
-
-    my $encode = $args->{'encode'} ? $args->{'encode'} : 'utf8';
-
-    if ($encode eq 'utf8') {
-        return $column;
-    } elsif ($encode eq 'binary') {
-        use Encode;
-        use Encode::DoubleEncodedUTF8;
-        return decode("utf-8-de",$column);
-    }
+    return $column;
 }
 1;
 

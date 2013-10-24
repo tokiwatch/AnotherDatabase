@@ -12,7 +12,6 @@ cpanもしくは、cpanmでDBIx::Class::DBIx::Class::Schema::LoaderとEncode::Do
 
 ```
 $ cpanm DBIx::Class::DBIx::Class::Schema::Loader
-$ cpanm Encode::DoubleEncodedUTF8
 ```
 
 本パッケージに含まれる「**plugins**」ディレクトリ内のディレクトリ「AnotherDatabase」を、Movable
@@ -30,9 +29,7 @@ ADBDatabase     database name
 ADBDBUser       database username
 ADBDBPassword   database password
 ADBDBHost       hostname
-ADBDBEncode     utf8
 
-# latin1のテーブルにUTF8で保存されてしまっているような場合、ADBDEncodeをbinaryとしてください。
 ```
 
 ### MTタグ
@@ -119,8 +116,6 @@ AnotherDatabaseTableタグのブロック内でのみ利用できます。Anothe
     </mt:AnotherDatabaseTable>
 </mt:Anotherdatabase>
 ```
-
-
 
 ## このプラグインの利用、及び著作権や保証について
 

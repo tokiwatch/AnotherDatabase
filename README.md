@@ -8,10 +8,11 @@
 
 ### 事前準備
 
-cpanもしくは、cpanmでDBIx::Class::DBIx::Class::Schema::LoaderとEncode::DoubleEncodedUTF8をインストールしてください。
+cpanもしくは、cpanmでDBIx::Class、DBIx::Class::Schema::Loaderをインストールしてください。
 
 ```
-$ cpanm DBIx::Class::DBIx::Class::Schema::Loader
+$ cpanm DBIx::Class
+$ cpanm DBIx::Class::Schema::Loader
 ```
 
 本パッケージに含まれる「**plugins**」ディレクトリ内のディレクトリ「AnotherDatabase」を、Movable
@@ -87,7 +88,7 @@ AnotherDatabaseタグのブロック内でのみ利用できます。データ�
 - rows
     - 1ページ当たりの行数を指定します。
 
-#### AnotherDatabaseColumn (ブロックタグ)
+#### AnotherDatabaseColumn (ファンクションタグ)
 
 AnotherDatabaseTableタグのブロック内でのみ利用できます。AnotherDatabaseTableで呼び出されたデータベースの各行の各カラムを出力します。
 

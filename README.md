@@ -8,11 +8,12 @@
 
 ### 事前準備
 
-cpanもしくは、cpanmでDBIx::Class、DBIx::Class::Schema::Loaderをインストールしてください。
+cpanもしくは、cpanmでDBIx::Class、DBIx::Class::Schema::Loader、Encode::DoubleEncodedUTF8をインストールしてください。
 
 ```
 $ cpanm DBIx::Class
 $ cpanm DBIx::Class::Schema::Loader
+$ cpanm Encode::DoubleEncodedUTF8
 ```
 
 本パッケージに含まれる「**plugins**」ディレクトリ内のディレクトリ「AnotherDatabase」を、Movable
@@ -24,12 +25,26 @@ Typeインストールディレクトリの「**plugins**」ディレクトリ�
 ### 初期設定
 mt-config.cgiに下記の項目を追記します。
 
+- ADBObjectDriver
+    - 使用するデータベースドライバ
+    - 例: dbi:mysql
+- ADBDatabase
+    - 接続するデータベースの名前
+- ADBDBUser
+    - データベースに接続できるデータベースユーザ名
+- ADBDBPassword
+    - データベースユーザのパスワード
+- ADBDBHost
+    - データベースが設置されているホスト
+
+#### 例
+
 ```
 ADBObjectDriver dbi:mysql
-ADBDatabase     database name
-ADBDBUser       database username
-ADBDBPassword   database password
-ADBDBHost       hostname
+ADBDatabase     database
+ADBDBUser       database_user
+ADBDBPassword   database_password
+ADBDBHost       localhost
 
 ```
 
@@ -57,6 +72,41 @@ ADBDBHost       hostname
 #### AnotherDatabaseTable (ブロックタグ)
 
 AnotherDatabaseタグのブロック内でのみ利用できます。データベースのテーブルの各行を呼び出します。
+
+##### モディファイヤ
+- table
+    - テーブル名を指定します。
+- column
+    - フィルタの対象とするcolumnを指定します。
+- method
+    - フィルタのメソッドを定義します。一般的なsql文のwhere句で利用される比較演算子が利用できます。
+    - 演算子の例
+        - =
+        - !=
+        - \>
+        - \<
+        - \>=
+        - \<=
+        - like
+        - between
+- values
+    - methodで使用する値を定義します。
+    - 数値、文字列、配列が利用できます。(配列の場合は、","(カンマ)で区切ります。)
+    - like演算子の場合は、sql文で使用される文字列の定義の方法が利用できます。
+        - 例えば、文中に語句がある場合は、"%語句%"というような形になります。
+    - between演算子の場合は、必ず2要素からなる配列を設定します。
+- sort_by
+    - ソートに使用するcolumn名を指定します。
+- sort_order = "{ascend | descend}"
+    - sort_byで指定したcolumnの値で、昇順か降順を指定します。デフォルトでは、descendです。
+- page
+    - 表示するページを指定します。
+- rows
+    - 1ページ当たりの行数を指定します。
+
+#### AnotherDatabaseFilter (ブロックタグ)
+
+AnotherDatabaseTableタグのブロック内でのみ利用できます。AnotherDatabaseTableタグが読み込んだテーブルの各行をさらにフィルタリングします。
 
 ##### モディファイヤ
 
@@ -88,6 +138,7 @@ AnotherDatabaseタグのブロック内でのみ利用できます。データ�
 - rows
     - 1ページ当たりの行数を指定します。
 
+
 #### AnotherDatabaseColumn (ファンクションタグ)
 
 AnotherDatabaseTableタグのブロック内でのみ利用できます。AnotherDatabaseTableで呼び出されたデータベースの各行の各カラムを出力します。
@@ -104,19 +155,29 @@ AnotherDatabaseTableタグのブロック内でのみ利用できます。Anothe
 
 ```
 <mt:Anotherdatabase>
-    <mt:AnotherDatabaseTable table="tablename"
-        column = "id"
-        method = "="
-        value = "1,3,5"
+    <mt:AnotherDatabaseTable
+        table="tablename"
+        column="id"
+        method="="
+        values="1,3,5"
         sort_by="modified_datetime"
         sort_order="descend"
         page="1"
         rows="4">
-        <$mt:AnotherDatabaseColumn column="id"$>
-        <$mt:AnotherDatabaseColumn column="name"$><br />
+        <mt:AnotherDatabaseFilter
+            column="other_column"
+            method="like"
+            values="abc">
+            <$mt:AnotherDatabaseColumn column="id"$>
+            <$mt:AnotherDatabaseColumn column="name"$><br />
+        </mt:AnotherDatabaseFilter>
     </mt:AnotherDatabaseTable>
 </mt:Anotherdatabase>
 ```
+
+## 注記
+
+- テーブル名およびカラム名の呼び出しの際の命名規約はDBIx::Classのドキュメントを参照してください。
 
 ## 連絡先
 

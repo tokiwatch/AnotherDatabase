@@ -179,6 +179,3 @@ AnotherDatabaseTableタグのブロック内でのみ利用できます。Anothe
 
 - テーブル名およびカラム名の呼び出しの際の命名規約はDBIx::Classのドキュメントを参照してください。
 
-## 連絡先
-
-作者：[Alliance Port, LLC.](http://www.allianceport.jp/)
